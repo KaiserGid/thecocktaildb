@@ -3,12 +3,14 @@ class DrinkEntity {
   final String name;
   final String isAlchoolic;
   final String urlImage;
+  final String glass;
 
   DrinkEntity({
     required this.id,
     required this.name,
     required this.isAlchoolic,
     required this.urlImage,
+    required this.glass,
   });
 
   @override

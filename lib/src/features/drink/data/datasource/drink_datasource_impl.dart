@@ -9,10 +9,14 @@ class DioDrinkDatasourceImpl implements DrinkDatasource {
 
   @override
   Future<List<DrinkModel>> fethDrinkRandon() async {
-    var result = await clientHttp.get(EndPoints.filterIsAlcoholic(type: 'Alcoholic'));
-    List mapDrinks = result.data['drinks'];
-    List<DrinkModel> drinkModels = mapDrinks.map((e) => DrinkModel.fromMap(e)).toList();
-    return drinkModels;
+    try {
+      var result = await clientHttp.get(EndPoints.lookupRandomCocktail());
+      List mapDrinks = result.data['drinks'];
+      List<DrinkModel> drinkModels = mapDrinks.map((e) => DrinkModel.fromMap(e)).toList();
+      return drinkModels;
+    } catch (e) {
+      throw Exception('Ocorreu um erro ao buscar os dados de drinks: $e');
+    }
   }
 
   @override
@@ -20,14 +24,23 @@ class DioDrinkDatasourceImpl implements DrinkDatasource {
     var result = await clientHttp.get(EndPoints.lookupFullCocktailDetailsById(id: drinkId));
     List mapDrinks = result.data['drinks'];
     List<DrinkModel> drinkModels = mapDrinks.map((e) => DrinkModel.fromMap(e)).toList();
+
     return drinkModels;
   }
 
   @override
   Future<List<DrinkModel>> fecthDrinkByType({required String type}) async {
-    var result = await clientHttp.get(EndPoints.filterIsAlcoholic(type: type));
-    List mapDrinks = result.data['drinks'];
-    List<DrinkModel> drinkModels = mapDrinks.map((e) => DrinkModel.fromMap(e)).toList();
-    return drinkModels;
+    try {
+      var result = await clientHttp.get(EndPoints.filterIsAlcoholic(type: type));
+      if (result.statusCode == 200) {
+        List mapDrinks = result.data['drinks'];
+        List<DrinkModel> drinkModels = mapDrinks.map((e) => DrinkModel.fromMap(e)).toList();
+        return drinkModels;
+      } else {
+        throw DioErrorType.response;
+      }
+    } catch (e) {
+      throw DioErrorType.response;
+    }
   }
 }

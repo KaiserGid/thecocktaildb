@@ -8,6 +8,7 @@ class DrinkAdapter {
       name: model.strDrink,
       isAlchoolic: model.strAlcoholic,
       urlImage: model.strDrinkThumb,
+      glass: model.strGlass,
     );
   }
 }

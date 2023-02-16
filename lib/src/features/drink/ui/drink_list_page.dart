@@ -29,31 +29,74 @@ class DrinkListPage extends StatelessWidget {
       body: FutureBuilder<List<DrinkEntity>>(
         future: getDrinkByAlchoolic.call(typeDrink),
         builder: (context, snapshot) => snapshot.hasData
-            ? ListView.builder(
+            ? GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.8,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                ),
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   DrinkEntity drink = snapshot.data![index];
                   return Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: ListTile(
-                        leading: Image.network(
-                          drink.urlImage,
-                          loadingBuilder: (context, child, loadingProgress) => loadingProgress == null ? child : const CircularProgressIndicator(),
-                        ),
-                        title: Text(drink.name),
-                        subtitle: Text(drink.isAlchoolic),
-                        onTap: () => Navigator.pushNamed(
-                          context,
-                          DrinkDetail.routeName,
-                          arguments: drink.id,
-                        ),
-                      ));
+                      child: DrinkCardWidget(
+                          id: drink.id,
+                          image: drink.urlImage,
+                          title: drink.name,
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              DrinkDetail.routeName,
+                              arguments: drink.id,
+                            );
+                          }));
                 })
             : const Center(
                 child: Center(
                   child: CircularProgressIndicator(),
                 ),
               ),
+      ),
+    );
+  }
+}
+
+class DrinkCardWidget extends StatelessWidget {
+  final String title;
+  final String image;
+  final String id;
+  final Function() onTap;
+  const DrinkCardWidget({
+    super.key,
+    required this.title,
+    required this.image,
+    required this.id,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          children: [
+            Image.network(
+              fit: BoxFit.cover,
+              image,
+              loadingBuilder: (context, child, loadingProgress) => loadingProgress == null ? child : const CircularProgressIndicator(),
+            ),
+            Text(
+              title,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }
