@@ -69,7 +69,32 @@ class DrinkDetail extends StatelessWidget {
                                       rating: 50.0,
                                     ),
                                   ),
-                                  RowDrinkDetailCenterWidget(drink: drink)
+                                  RowDrinkDetailCenterWidget(drink: drink),
+                                  ...drink.ingredients.map((e) => Row(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Text(e.measure),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(e.name),
+                                            ],
+                                          ),
+                                        ],
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 32.0),
+                                    child: Text(
+                                      drink.instruction,
+                                      style: Theme.of(context).textTheme.bodyMedium,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

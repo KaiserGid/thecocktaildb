@@ -1,9 +1,13 @@
+import 'package:thecocktaildb/src/features/drink/domain/entities/ingredients_entity.dart';
+
 class DrinkEntity {
   final String id;
   final String name;
   final String isAlchoolic;
   final String urlImage;
   final String glass;
+  final String instruction;
+  final List<IngredientEntity> ingredients;
 
   DrinkEntity({
     required this.id,
@@ -11,6 +15,8 @@ class DrinkEntity {
     required this.isAlchoolic,
     required this.urlImage,
     required this.glass,
+    required this.instruction,
+    required this.ingredients,
   });
 
   @override

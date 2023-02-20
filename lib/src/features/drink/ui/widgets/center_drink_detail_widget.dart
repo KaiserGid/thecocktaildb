@@ -13,7 +13,7 @@ class RowDrinkDetailCenterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Column(
           children: [
@@ -29,13 +29,10 @@ class RowDrinkDetailCenterWidget extends StatelessWidget {
         Column(
           children: [
             const Text('Glass type'),
-            Text(drink.glass),
-          ],
-        ),
-        Column(
-          children: [
-            const Text('Glass type'),
-            Text(drink.glass),
+            Text(
+              drink.glass,
+              overflow: TextOverflow.ellipsis,
+            ),
           ],
         ),
       ],
