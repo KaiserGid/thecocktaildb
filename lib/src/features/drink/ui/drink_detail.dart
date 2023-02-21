@@ -4,6 +4,7 @@ import 'package:thecocktaildb/src/features/drink/domain/entities/drink_entity.da
 import 'package:thecocktaildb/src/features/drink/domain/infra/drink_repository.dart';
 import 'package:thecocktaildb/src/features/drink/infra/datasources/drink_datasource.dart';
 import 'package:thecocktaildb/src/features/drink/infra/repository/drink_repository_impl.dart';
+import 'package:thecocktaildb/src/features/drink/ui/widgets/app_bar_widget.dart';
 
 import '../domain/usecases/drink_usecases/get_drink_by_id_usecase.dart';
 import '../domain/usecases/drink_usecases/get_drink_by_id_usecase_impl.dart';
@@ -26,7 +27,7 @@ class DrinkDetail extends StatelessWidget {
     final args = ModalRoute.of(context)!.settings.arguments.toString();
 
     return Scaffold(
-        appBar: AppBar(
+        appBar: AppBarWidget(
           title: const Text(''),
         ),
         extendBodyBehindAppBar: true,
@@ -37,7 +38,16 @@ class DrinkDetail extends StatelessWidget {
               return snapshot.hasData
                   ? Stack(
                       children: [
-                        Image.network(snapshot.data!.urlImage),
+                        ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(220),
+                              bottomRight: Radius.circular(150),
+                            ),
+                            child: Image.network(
+                              snapshot.data!.urlImage,
+                              // scale: 1,
+                              height: MediaQuery.of(context).size.height * 0.5,
+                            )),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Container(
@@ -54,48 +64,58 @@ class DrinkDetail extends StatelessWidget {
                                   stops: const [0.01, 0.7]),
                               borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30),
+                                topRight: Radius.circular(150),
                               ),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(top: 24.0, left: 24, right: 24),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topLeft,
-                                    child: HeaderDetailWidget(
-                                      drinkName: drink!.name,
-                                      drinkType: drink.isAlchoolic,
-                                      rating: 50.0,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: HeaderDetailWidget(
+                                        drinkName: drink!.name,
+                                        drinkType: drink.isAlchoolic,
+                                        rating: 50.0,
+                                      ),
                                     ),
-                                  ),
-                                  RowDrinkDetailCenterWidget(drink: drink),
-                                  ...drink.ingredients.map((e) => Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text(e.measure),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            width: 8,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(e.name),
-                                            ],
-                                          ),
-                                        ],
-                                      )),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 32.0),
-                                    child: Text(
-                                      drink.instruction,
-                                      style: Theme.of(context).textTheme.bodyMedium,
+                                    const SizedBox(height: 32),
+                                    RowDrinkDetailCenterWidget(drink: drink),
+                                    const SizedBox(height: 32),
+                                    Text(
+                                      'Ingredients'.toUpperCase(),
+                                      style: const TextStyle(color: Colors.yellowAccent),
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(height: 8),
+                                    ...drink.ingredients.map((e) => Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Text(e.measure),
+                                              ],
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(e.name)]),
+                                          ],
+                                        )),
+                                    const SizedBox(height: 32),
+                                    Text(
+                                      'Instructions'.toUpperCase(),
+                                      style: const TextStyle(color: Colors.yellowAccent),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                                      child: Text(
+                                        drink.instruction,
+                                        style: Theme.of(context).textTheme.bodyMedium,
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

@@ -24,7 +24,7 @@ class App extends StatelessWidget {
             fontSize: FontSize.title,
           ),
         ),
-        scaffoldBackgroundColor: Colors.purple,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 35, 0, 61),
 
         textTheme: const TextTheme(
           headline1: TextStyle(color: Colors.white, fontSize: FontSize.title),

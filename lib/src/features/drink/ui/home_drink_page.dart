@@ -8,27 +8,59 @@ class HomeDrinkPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, DrinkListPage.routeName, arguments: TypeDrinkEnum.alcoholic.type),
-              child: const Text('Alcolico'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          InkWell(
+            onTap: () => Navigator.pushNamed(
+              context,
+              DrinkListPage.routeName,
+              arguments: TypeDrinkEnum.alcoholic.type,
             ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, DrinkListPage.routeName, arguments: TypeDrinkEnum.nonAlcoholic.type),
-              child: const Text('Non-Alcholic'),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 1,
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: Image.asset(
+                'assets/images/alcoolico.png',
+                fit: BoxFit.cover,
+                scale: 1,
+              ),
             ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, DrinkListPage.routeName, arguments: TypeDrinkEnum.optionalAlcohol.type),
-              child: const Text('Optional Alcoolic'),
+          ),
+          InkWell(
+            onTap: () => Navigator.pushNamed(
+              context,
+              DrinkListPage.routeName,
+              arguments: TypeDrinkEnum.nonAlcoholic.type,
             ),
-          ],
-        ),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 1,
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: Image.asset(
+                'assets/images/non_alcolic.png',
+                fit: BoxFit.cover,
+                scale: 1,
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () => Navigator.pushNamed(
+              context,
+              DrinkListPage.routeName,
+              arguments: TypeDrinkEnum.optionalAlcohol.type,
+            ),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 1,
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: Image.asset(
+                'assets/images/optional.png',
+                fit: BoxFit.cover,
+                scale: 1,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

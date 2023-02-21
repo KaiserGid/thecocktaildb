@@ -20,7 +20,7 @@ class HeaderDetailWidget extends StatelessWidget {
       children: [
         Text(
           drinkName,
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headline1!.copyWith(color: Colors.yellowAccent),
         ),
         Text(
           drinkType,
@@ -31,7 +31,10 @@ class HeaderDetailWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(Icons.favorite),
+                const Icon(
+                  Icons.favorite,
+                  color: Colors.yellowAccent,
+                ),
                 const SizedBox(width: 10),
                 Text('$rating'),
               ],
