@@ -9,8 +9,6 @@ class AppBarWidget extends AppBar {
                 onTap: Navigator.of(context).pop,
                 child: const Icon(
                   Icons.arrow_circle_left,
-                  size: 50,
-                  color: Colors.yellowAccent,
                 ),
               );
             }));

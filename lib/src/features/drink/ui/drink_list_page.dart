@@ -25,9 +25,7 @@ class DrinkListPage extends StatelessWidget {
     final String typeDrink = ModalRoute.of(context)!.settings.arguments.toString();
 
     return Scaffold(
-      appBar: AppBarWidget(
-        title: Text(typeDrink),
-      ),
+      appBar: AppBarWidget(title: Text(typeDrink)),
       body: FutureBuilder<List<DrinkEntity>>(
         future: getDrinkByAlchoolic.call(typeDrink),
         builder: (context, snapshot) => snapshot.hasData

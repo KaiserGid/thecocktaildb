@@ -19,32 +19,33 @@ class DrinkCardWidget extends StatelessWidget {
       onTap: onTap,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(topLeft: Radius.circular(64)),
-        child: Stack(
-          children: [
-            Image.network(
-              fit: BoxFit.cover,
-              image,
-              loadingBuilder: (context, child, loadingProgress) => loadingProgress == null
-                  ? child
-                  : const CircularProgressIndicator(
-                      color: Colors.yellowAccent,
+        child: Card(
+          child: Stack(
+            children: [
+              Image.network(
+                fit: BoxFit.cover,
+                image,
+                loadingBuilder: (context, child, loadingProgress) => loadingProgress == null
+                    ? child
+                    : const CircularProgressIndicator(
+                        // color: Colors.yellowAccent,
+                        ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  height: 20,
+                  child: Center(
+                    child: Text(
+                      style: const TextStyle(color: Color.fromARGB(255, 57, 0, 90)),
+                      title,
+                      overflow: TextOverflow.ellipsis,
                     ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 20,
-                color: Colors.yellowAccent,
-                child: Center(
-                  child: Text(
-                    style: const TextStyle(color: Color.fromARGB(255, 57, 0, 90)),
-                    title,
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
