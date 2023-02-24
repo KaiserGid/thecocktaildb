@@ -13,26 +13,27 @@ class RowDrinkDetailCenterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Glass type'),
-            Text(drink.glass),
+            Text(
+              'Glass type'.toUpperCase(),
+              style: const TextStyle(color: Colors.yellowAccent),
+            ),
+            Text(drink.glass, overflow: TextOverflow.ellipsis),
           ],
         ),
-        const VerticalDivider(
-          color: Colors.white,
-          thickness: 1,
-          width: 20,
-        ),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Glass type'),
             Text(
-              drink.glass,
-              overflow: TextOverflow.ellipsis,
+              'Glass type'.toUpperCase(),
+              style: const TextStyle(color: Colors.yellowAccent),
             ),
+            Text(drink.glass, overflow: TextOverflow.ellipsis),
           ],
         ),
       ],

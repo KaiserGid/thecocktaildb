@@ -4,10 +4,12 @@ import 'package:thecocktaildb/src/features/drink/domain/infra/drink_repository.d
 import 'package:thecocktaildb/src/features/drink/infra/datasources/drink_datasource.dart';
 import 'package:thecocktaildb/src/features/drink/infra/repository/drink_repository_impl.dart';
 import 'package:thecocktaildb/src/features/drink/ui/drink_detail.dart';
+import 'package:thecocktaildb/src/features/drink/ui/widgets/app_bar_widget.dart';
 
 import '../domain/entities/drink_entity.dart';
 import '../domain/usecases/drink_usecases/get_drink_by_alchoolic_usecase.dart';
 import '../domain/usecases/drink_usecases/get_drink_by_alchoolic_usecase_impl.dart';
+import 'widgets/card_item_widget.dart';
 
 class DrinkListPage extends StatelessWidget {
   static const routeName = 'drinkList';
@@ -23,25 +25,22 @@ class DrinkListPage extends StatelessWidget {
     final String typeDrink = ModalRoute.of(context)!.settings.arguments.toString();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(typeDrink),
-      ),
+      appBar: AppBarWidget(title: Text(typeDrink)),
       body: FutureBuilder<List<DrinkEntity>>(
         future: getDrinkByAlchoolic.call(typeDrink),
         builder: (context, snapshot) => snapshot.hasData
-            ? GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.8,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                ),
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  DrinkEntity drink = snapshot.data![index];
-                  return Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: DrinkCardWidget(
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                    ),
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      DrinkEntity drink = snapshot.data![index];
+                      return DrinkCardWidget(
                           id: drink.id,
                           image: drink.urlImage,
                           title: drink.name,
@@ -51,52 +50,16 @@ class DrinkListPage extends StatelessWidget {
                               DrinkDetail.routeName,
                               arguments: drink.id,
                             );
-                          }));
-                })
-            : const Center(
+                          });
+                    }),
+              )
+            : const SizedBox(
                 child: Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: Colors.yellowAccent,
+                  ),
                 ),
               ),
-      ),
-    );
-  }
-}
-
-class DrinkCardWidget extends StatelessWidget {
-  final String title;
-  final String image;
-  final String id;
-  final Function() onTap;
-  const DrinkCardWidget({
-    super.key,
-    required this.title,
-    required this.image,
-    required this.id,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: Column(
-          children: [
-            Image.network(
-              fit: BoxFit.cover,
-              image,
-              loadingBuilder: (context, child, loadingProgress) => loadingProgress == null ? child : const CircularProgressIndicator(),
-            ),
-            Text(
-              title,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
       ),
     );
   }
