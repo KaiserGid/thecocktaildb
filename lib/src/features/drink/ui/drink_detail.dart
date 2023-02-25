@@ -38,20 +38,15 @@ class DrinkDetail extends StatelessWidget {
               return snapshot.hasData
                   ? Stack(
                       children: [
-                        ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(220),
-                              bottomRight: Radius.circular(150),
-                            ),
-                            child: Image.network(
-                              snapshot.data!.urlImage,
-                              // scale: 1,
-                              height: MediaQuery.of(context).size.height * 0.5,
-                            )),
+                        Image.network(
+                          drink!.urlImage,
+                          // scale: 1,
+                          height: MediaQuery.of(context).size.height * 0.5,
+                        ),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Container(
-                            height: MediaQuery.of(context).size.height * 0.55,
+                            height: MediaQuery.of(context).size.height * 0.5,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
@@ -62,10 +57,6 @@ class DrinkDetail extends StatelessWidget {
                                   begin: Alignment.topRight,
                                   end: Alignment.bottomLeft,
                                   stops: const [0.01, 0.7]),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(150),
-                              ),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(top: 24.0, left: 24, right: 24),
@@ -76,7 +67,6 @@ class DrinkDetail extends StatelessWidget {
                                     Align(
                                       alignment: Alignment.topLeft,
                                       child: HeaderDetailWidget(
-                                        drinkName: drink!.name,
                                         drinkType: drink.isAlchoolic,
                                         rating: 50.0,
                                       ),
@@ -115,6 +105,23 @@ class DrinkDetail extends StatelessWidget {
                                       ),
                                     ),
                                   ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                              color: Theme.of(context).colorScheme.primaryContainer,
+                              child: Center(
+                                child: Text(
+                                  drink.name,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.headline4!.copyWith(color: Theme.of(context).colorScheme.primary),
                                 ),
                               ),
                             ),

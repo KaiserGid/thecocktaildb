@@ -8,16 +8,10 @@ class DrinkEntity {
   final String glass;
   final String instruction;
   final List<IngredientEntity> ingredients;
+  final String category;
 
-  DrinkEntity({
-    required this.id,
-    required this.name,
-    required this.isAlchoolic,
-    required this.urlImage,
-    required this.glass,
-    required this.instruction,
-    required this.ingredients,
-  });
+  DrinkEntity(
+      {required this.id, required this.name, required this.isAlchoolic, required this.urlImage, required this.glass, required this.instruction, required this.ingredients, required this.category});
 
   @override
   bool operator ==(Object other) {

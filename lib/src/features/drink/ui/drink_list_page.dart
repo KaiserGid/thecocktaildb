@@ -41,15 +41,9 @@ class DrinkListPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       DrinkEntity drink = snapshot.data![index];
                       return DrinkCardWidget(
-                          id: drink.id,
-                          image: drink.urlImage,
-                          title: drink.name,
+                          drink: drink,
                           onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              DrinkDetail.routeName,
-                              arguments: drink.id,
-                            );
+                            Navigator.pushNamed(context, DrinkDetail.routeName, arguments: drink.id);
                           });
                     }),
               )

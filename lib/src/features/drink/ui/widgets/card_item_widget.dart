@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:thecocktaildb/src/features/drink/domain/entities/drink_entity.dart';
 
 class DrinkCardWidget extends StatelessWidget {
-  final String title;
-  final String image;
-  final String id;
+  final DrinkEntity drink;
   final Function() onTap;
+
   const DrinkCardWidget({
     super.key,
-    required this.title,
-    required this.image,
-    required this.id,
+    required this.drink,
     required this.onTap,
   });
 
@@ -24,7 +22,7 @@ class DrinkCardWidget extends StatelessWidget {
             children: [
               Image.network(
                 fit: BoxFit.cover,
-                image,
+                drink.urlImage,
                 loadingBuilder: (context, child, loadingProgress) => loadingProgress == null
                     ? child
                     : const CircularProgressIndicator(
@@ -38,7 +36,7 @@ class DrinkCardWidget extends StatelessWidget {
                   child: Center(
                     child: Text(
                       style: const TextStyle(color: Color.fromARGB(255, 57, 0, 90)),
-                      title,
+                      drink.name,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

@@ -13,6 +13,7 @@ class DrinkAdapter {
       glass: model.strGlass,
       instruction: model.strInstructions,
       ingredients: getIngredients(model),
+      category: model.strCategory,
     );
   }
 }

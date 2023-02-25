@@ -30,10 +30,10 @@ class RowDrinkDetailCenterWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Glass type'.toUpperCase(),
+              'Category'.toUpperCase(),
               style: const TextStyle(color: Colors.yellowAccent),
             ),
-            Text(drink.glass, overflow: TextOverflow.ellipsis),
+            Text(drink.category, overflow: TextOverflow.ellipsis),
           ],
         ),
       ],

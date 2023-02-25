@@ -10,7 +10,7 @@ ThemeData get darkTheme => ThemeData(
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(
           size: 40,
-          color: darkColorScheme.tertiary,
+          color: darkColorScheme.primaryContainer,
         ),
       ),
     );
