@@ -1,7 +1,6 @@
-import 'package:thecocktaildb/src/features/drink/ui/home_drink_page.dart';
-
-import 'features/drink/ui/drink_detail.dart';
-import 'features/drink/ui/drink_list_page.dart';
+import 'features/drink/ui/pages/drink_detail.dart';
+import 'features/drink/ui/pages/drink_list_page.dart';
+import 'features/drink/ui/pages/home_drink_page.dart';
 
 final routers = {
   '/': (_) => const HomeDrinkPage(),

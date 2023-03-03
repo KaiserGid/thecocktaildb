@@ -3,13 +3,13 @@ import 'package:thecocktaildb/src/features/drink/data/datasource/drink_datasourc
 import 'package:thecocktaildb/src/features/drink/domain/infra/drink_repository.dart';
 import 'package:thecocktaildb/src/features/drink/infra/datasources/drink_datasource.dart';
 import 'package:thecocktaildb/src/features/drink/infra/repository/drink_repository_impl.dart';
-import 'package:thecocktaildb/src/features/drink/ui/drink_detail.dart';
 import 'package:thecocktaildb/src/features/drink/ui/widgets/app_bar_widget.dart';
 
-import '../domain/entities/drink_entity.dart';
-import '../domain/usecases/drink_usecases/get_drink_by_alchoolic_usecase.dart';
-import '../domain/usecases/drink_usecases/get_drink_by_alchoolic_usecase_impl.dart';
-import 'widgets/card_item_widget.dart';
+import '../../domain/entities/drink_entity.dart';
+import '../../domain/usecases/drink_usecases/get_drink_by_alchoolic_usecase.dart';
+import '../../domain/usecases/drink_usecases/get_drink_by_alchoolic_usecase_impl.dart';
+import '../widgets/card_item_widget.dart';
+import 'drink_detail.dart';
 
 class DrinkListPage extends StatelessWidget {
   static const routeName = 'drinkList';

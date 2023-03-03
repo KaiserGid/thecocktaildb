@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thecocktaildb/src/features/drink/domain/enuns/type_drinks_enums.dart';
-import 'package:thecocktaildb/src/features/drink/ui/drink_list_page.dart';
+
+import 'drink_list_page.dart';
 
 class HomeDrinkPage extends StatelessWidget {
   const HomeDrinkPage({super.key});
@@ -12,6 +13,13 @@ class HomeDrinkPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const Card(
+            child: SizedBox(
+              height: 300,
+              width: 200,
+              child: Center(), //Todo! parei aqui
+            ),
+          ),
           InkWell(
             onTap: () => Navigator.pushNamed(
               context,
