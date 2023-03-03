@@ -6,10 +6,10 @@ import 'package:thecocktaildb/src/features/drink/infra/datasources/drink_datasou
 import 'package:thecocktaildb/src/features/drink/infra/repository/drink_repository_impl.dart';
 import 'package:thecocktaildb/src/features/drink/ui/widgets/app_bar_widget.dart';
 
-import '../domain/usecases/drink_usecases/get_drink_by_id_usecase.dart';
-import '../domain/usecases/drink_usecases/get_drink_by_id_usecase_impl.dart';
-import 'widgets/center_drink_detail_widget.dart';
-import 'widgets/header_drink_detail_widget.dart';
+import '../../domain/usecases/drink_usecases/get_drink_by_id_usecase.dart';
+import '../../domain/usecases/drink_usecases/get_drink_by_id_usecase_impl.dart';
+import '../widgets/center_drink_detail_widget.dart';
+import '../widgets/header_drink_detail_widget.dart';
 
 class DrinkDetail extends StatelessWidget {
   static const routeName = 'DrinkDetail';
